@@ -1,0 +1,5 @@
+# 如果配置不生效: Ctrl+Shift+P→ 输入 "Restart language server"
+CompileFlags:
+  Add:
+    - -ID:\third_party_library\boost
+  
