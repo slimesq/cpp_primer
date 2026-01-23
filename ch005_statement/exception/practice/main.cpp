@@ -6,19 +6,29 @@ int main()
 {
     int dividend{};
     int divisor{};
-    std::cin >> dividend >> divisor;
 
-    try
+    while (1)
     {
-        if (divisor == 0)
+        try
         {
-            throw std::runtime_error("The divisor cannot be 0.");
+            std::cin >> dividend >> divisor;
+            if (divisor == 0)
+            {
+                throw std::runtime_error("The divisor cannot be 0.");
+            }
+            std::cout << dividend / divisor;
+            break;
         }
-        std::cout << dividend / divisor;
-    }
-    catch (std::exception err)
-    {
-        std::cout << err.what() << std::endl;
+        catch (std::exception err)
+        {
+            std::cout << err.what() << "\nTry Again? Enter y or n:\n";
+            char c{};
+            std::cin >> c;
+            if (!std::cin || c == 'n')
+            {
+                break;
+            }
+        }
     }
     return 0;
 }
