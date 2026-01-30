@@ -1,6 +1,8 @@
 #include <test.h>
 #include <iostream>
 
+extern const int conInt{10};
+
 double myAdd(double val1, double val2)
 {                                 // val1 和 val2 是形参
     double result = val1 + val2;  // result 是普通局部变量

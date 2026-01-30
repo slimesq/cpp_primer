@@ -48,6 +48,25 @@ void testconst(int const topols[])
     topols = tops;
 }
 
+int f(int, int);
+
+int add(int a, int b)
+{
+    return a + b;
+}
+int sub(int a, int b)
+{
+    return a - b;
+}
+int mul(int a, int b)
+{
+    return a * b;
+}
+int divi(int a, int b)
+{
+    return a / b;
+}
+
 int main()
 {
     /* fooBar(2);*/
@@ -87,6 +106,62 @@ int main()
         std::cout << i + ui << std::endl;
         std::cout << ui + i << std::endl;
     */
+
+    /*
+        int i{10};
+        int *pI{&i};
+        void *pvoid{static_cast<void *>(pI)};
+        void *pvoid1{pI};
+        char *pc1{static_cast<char *>(pvoid)};
+        char *pc{reinterpret_cast<char *>(pI)};
+
+        int const *cPi{&i};
+        char *pc2{reinterpret_cast<char *>(const_cast<int *>(cPi))};
+
+        double d{10.0};
+        const double *pd(&d);
+        double pd1{reinterpret_cast<double*>(pd)};  // error :const去除只能有const来完成。
+    */
+
+    /*
+        int i1, i2, i3;
+        int* const pInt1[2]{&i1, &i2};  // 数组中的每个指针都不允许修改指向。
+        int const* pInt2[2]{&i1, &i2};  // 数组中的每个指针都不允许修改指向的值。
+        pInt2[1] = &i3;
+        // *(pInt2[1]) = 3;// error
+        // pInt1[1] = &i3;    // error
+    */
+
+    /*
+        int const v2{0};
+        int v1{v2};
+        int i{1};
+        int *p1{&v1};
+        int const *p2{&v2}, *const p3{&i};
+        // p1 = p3;  // error: p3的类型为 int cosnt* const
+        p2 = p3;
+    */
+
+    /*
+        int const i{42};
+        auto j{i};
+        auto const &k{i};
+        auto *p{&i};
+        auto const j2{i}, &k2{i};
+        std::cout << typeid(i).name() << std::endl;
+        std::cout << typeid(j).name() << std::endl;
+        std::cout << typeid(k).name() << std::endl;
+        std::cout << typeid(p).name() << std::endl;
+        std::cout << typeid(j2).name() << std::endl;
+        std::cout << typeid(k2).name() << std::endl;
+    */
+
+    // std::vector<decltype(f) *> fvec{add, sub, mul, divi};
+    std::vector<int (*)(int, int)> fvec{add, sub, mul, divi};
+    for (auto const &f : fvec)
+    {
+        std::cout << "result = " << f(10, 5) << std::endl;
+    }
 
     return 0;
 }
