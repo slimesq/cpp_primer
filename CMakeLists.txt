@@ -24,3 +24,4 @@ include(cmake/common.cmake)
 
 add_subdirectory(ch005_statement)
 add_subdirectory(ch006_function)
+add_subdirectory(ch007_class)

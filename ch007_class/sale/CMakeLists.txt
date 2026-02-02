@@ -1,0 +1,5 @@
+add_executable(ch007_class_sale main.cpp)
+target_include_directories(ch007_class_sale PRIVATE "${CMAKE_CURRENT_LIST_DIR}/include")
+aux_source_directory(${CMAKE_CURRENT_LIST_DIR}/src SRC)
+message("SRC = ${SRC}")
+target_sources(ch007_class_sale PRIVATE ${SRC})
