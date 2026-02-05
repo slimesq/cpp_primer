@@ -1,8 +1,17 @@
 #pragma once
 #include <string>
+#include "Window_mgr.h"
 
 class Screen
 {
+    // Window_mgr的成员可以访问Screen类的私有部分
+    // friend class Window_mgr;
+
+    /*  也可以指定Window_mgr中具体的函数作为友元:
+        Window_mgr::clear必须在Screen类之前被声明
+    */
+    friend void Window_mgr::clear(ScreenIndex);
+
 public:
     // typedef std::string::size_type pos;
     using pos = std::string::size_type;
@@ -20,12 +29,35 @@ public:
 
     void some_member() const;
 
+    Screen& set(char);
+    Screen& set(pos, pos, char);
+
+    // 根据对象是否是const重载了display函数
+    Screen& display(std::ostream& os)
+    {
+        do_display(os);
+        return *this;
+    }
+    Screen const& display(std::ostream& os) const
+    {
+        do_display(os);
+        return *this;
+    }
+
+    pos size() const;
+
 private:
     pos cursor{0};            // 鼠标的位置
     pos height{0}, width{0};  // 屏幕的高度和宽度
     std::string contents;     // 保存屏幕内容的数组
 
     mutable size_t access_ctr{0};  // 即使在一个const对象内也能被修改
+
+    // 该函数负责显示Screen的内容
+    void do_display(std::ostream& os) const
+    {
+        os << contents;
+    }
 };
 
 inline Screen& Screen::move(pos r, pos c)  // 可以在函数的定义处指定inline
@@ -39,9 +71,4 @@ char Screen::get(pos r, pos c) const  // 在类的内部声明成inline
 {
     pos row = r * width;       // 计算行的位置
     return contents[row + c];  // 返回给定列的字符
-}
-
-void Screen::some_member() const
-{
-    ++access_ctr;  //  保存
 }

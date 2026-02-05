@@ -3,6 +3,13 @@
 
 int main()
 {
+    Sales_data sd("hello");
+    print(std::cout, sd) << std::endl;
+    sd.combine(std::string("const Sales_data &"));
+    // sd.combine(std::string("const Sales_data &"),1,1);  // 不会进行类类型的隐式转换。
+
+    Sales_data item = {"978", 25, 15.99};
+
     Sales_data total;           // 保存当前求和结果的变量
     if (read(std::cin, total))  // 读入第一笔交易
     {

@@ -1,10 +1,6 @@
 #include "Sales_data.h"
 #include <istream>
 
-Sales_data::Sales_data(std::istream& is)
-{
-    read(is, *this);  // read函数的作用是从is中读取一条交易信息然后存入this对象中
-}
 Sales_data& Sales_data::combine(Sales_data const& rhs)
 {
     units_sold += rhs.units_sold;
