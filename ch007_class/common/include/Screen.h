@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Window_mgr.h"
+#include <iostream>
 
 class Screen
 {

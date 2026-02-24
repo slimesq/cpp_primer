@@ -98,7 +98,10 @@ private:
     std::string owner;
     double amount;
     static double interestRate;
-    static double ininRate();
+    static double ininRate()
+    {
+        return 0.05;
+    };
 };
 double Account::interestRate{ininRate()};
 void Account::rate(double newReate)
@@ -143,11 +146,11 @@ int main()
     if (prod.any())  // 等价与if(false)
         std::cerr << "print an error message" << std::endl;
 
-    constexpr Data data{1, "123"};
+    // constexpr Data data{1, "123"};
 
-    int z = add(1, 2);
-    int x{1}, y{2};
-    int z1 = add(x, y);
+    // int z = add(1, 2);
+    // int x{1}, y{2};
+    // int z1 = add(x, y);
 
     return 0;
 }

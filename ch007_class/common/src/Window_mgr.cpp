@@ -1,5 +1,6 @@
 #include "Screen.h"
 
+
 void Window_mgr::clear(ScreenIndex i)
 {
     // s是一个Screen的引用,指向我们想要清空的那个屏幕

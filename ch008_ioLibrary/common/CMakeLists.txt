@@ -1,0 +1,5 @@
+add_exec1(EXEC_NAME)
+target_include_directories(ch008_ioLibrary_common PRIVATE "${CMAKE_CURRENT_LIST_DIR}/include")
+aux_source_directory(${CMAKE_CURRENT_LIST_DIR}/src SRC)
+message("SRC = ${SRC}")
+target_sources(ch008_ioLibrary_common PRIVATE ${SRC})

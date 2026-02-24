@@ -1,5 +1,4 @@
 #include "Screen.h"
-#include <istream>
 
 void Screen::some_member() const
 {

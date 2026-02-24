@@ -1,9 +1,19 @@
 #include <string>
 
-std::string (&func())[10];
+// std::string (&func())[10];
+
+std::string (&func())[10]
+{
+    static std::string arr[10];
+    return arr;
+}
 
 typedef std::string strs[10];
-strs(&func1());
+strs(&func1())
+{
+    static std::string arr[10];
+    return arr;
+}
 
 auto func2() -> std::string (&)[10];
 
